@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+  <title>Basic HTML Page</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<html lang="en">
+<head>
+  <title><%@path_formatted%></title>
+</head>
+<body>
+<h1><%@path_formatted%></h1>
+
+  <ul>
+  <p><%= @path_formatted %> </p>
+   <% @members.each do |member|%>
+   <% if member[:team]==@path_formatted || member[:position]==@path_formatted%>
+   <li> <%= member[:last] + ', ' + member[:first] + " " + find_player_info(member[:index_value],@path_formatted) %> </li>
+   <% end
+  end %>
+ </ul>
+
+</body>
+</html>
