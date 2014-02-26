@@ -19,6 +19,7 @@ get '/:path' do
 
   @teams = []
   @positions = []
+
   @members.each do |member|
     unless @teams.include?(member[:team])
       @teams << member[:team]
