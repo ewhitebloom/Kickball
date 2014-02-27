@@ -8,15 +8,27 @@
   <title><%@path_formatted%></title>
 </head>
 <body>
-<h1><%@path_formatted%></h1>
+<div id="wrapper">
+<h1><%=@path_formatted%></h1>
 
+<%if @path_formatted=="Cartoon League Kickball"%>
+	<h2><%="Teams:"%></h2><ul>
+	<% @teams.each do |team| %>
+		<li><%="<a href='#{team.downcase}'>"%> <%= team %> </a></li>
+	<% end %></ul>
+	<h2><%="Positions:"%></h2><ul>
+	<% @positions.each do |position| %>
+		<li><%="<a href='#{position.downcase}'>"%> <%= position %> </a></li>
+<% end %></ul>
+
+<%else%>
   <ul>
-  <p><%= @path_formatted %> </p>
    <% @members.each do |member|%>
    <% if member[:team]==@path_formatted || member[:position]==@path_formatted%>
-   <li> <%= member[:last] + ', ' + member[:first] + " " + find_player_info(member[:index_value],@path_formatted) %> </li>
-   <% end end %>
+   <li> <%= member[:last] + ', ' + member[:first] + " - " + find_player_info(member[:index_value],@path_formatted) %> </li>
+   <% end end end %>
  </ul>
 
+</wrapper>
 </body>
 </html>
