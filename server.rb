@@ -8,7 +8,9 @@ set :public_folder, File.dirname(__FILE__) + '/public'
 get '/:path' do
 
   @members = []
-
+  @teams = []
+  @positions = []
+  
   Members_struct = Struct.new(:index_value,:first, :last, :position, :team)
   index_value = 0
   CSV.foreach('lackp_starting_rosters.csv', headers: true) do |row|
@@ -16,9 +18,6 @@ get '/:path' do
     @members << member
     index_value += 1
   end
-
-  @teams = []
-  @positions = []
   
   @members.each do |member|
     unless @teams.include?(member[:team])
